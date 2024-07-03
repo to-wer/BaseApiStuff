@@ -10,10 +10,10 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace BaseApiStuff.Services;
 
-public class BaseAuthenticationService(
-    ILogger<BaseAuthenticationService> logger,
-    UserManager<IdentityUser> userManager,
-    IConfiguration configuration) : IAuthenticationService
+public class BaseAuthenticationService<TUser>(
+    ILogger<BaseAuthenticationService<TUser>> logger,
+    UserManager<TUser> userManager,
+    IConfiguration configuration) : IAuthenticationService where TUser : IdentityUser
 {
     public async Task<IdentityResult> RegisterUserAsync(RegisterUserDto userDto,
         CancellationToken cancellationToken = default)
@@ -24,7 +24,7 @@ public class BaseAuthenticationService(
             Email = userDto.Email
         };
 
-        return await userManager.CreateAsync(user, userDto.Password);
+        return await userManager.CreateAsync((TUser)user, userDto.Password);
     }
 
     public async Task<AuthResponse> LoginUserAsync(LoginUserDto userDto, CancellationToken cancellationToken = default)
@@ -55,10 +55,10 @@ public class BaseAuthenticationService(
                                                             throw new InvalidOperationException()));
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
-        var roles = await userManager.GetRolesAsync(user);
+        var roles = await userManager.GetRolesAsync((TUser)user);
         var roleClaims = roles.Select(x => new Claim(ClaimTypes.Role, x)).ToList();
 
-        var userClaims = await userManager.GetClaimsAsync(user);
+        var userClaims = await userManager.GetClaimsAsync((TUser)user);
 
         var claims = new List<Claim>
             {
