@@ -22,15 +22,15 @@ jobs:
       
       # Restore dependencies
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore ./src/BaseApiStuff/BaseApiStuff.csproj
       
       # Build the project
       - name: Build project
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build --configuration Release --no-restore ./src/BaseApiStuff/BaseApiStuff.csproj
       
       # Pack the library
       - name: Pack NuGet Package
-        run: dotnet pack --configuration Release --no-build --output ./nupkgs
+        run: dotnet pack --configuration Release --no-build --output ./nupkgs ./src/BaseApiStuff/BaseApiStuff.csproj
       
       # Push to GitHub Package Registry
       - name: Publish NuGet Package
