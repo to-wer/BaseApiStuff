@@ -1,4 +1,4 @@
-﻿namespace BaseApiStuff.Statics;
+﻿namespace BaseApiStuff.Configurations;
 
 public static class AuthConstants
 {
