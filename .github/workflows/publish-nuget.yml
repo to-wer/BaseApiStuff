@@ -34,4 +34,4 @@ jobs:
       
       # Push to GitHub Package Registry
       - name: Publish NuGet Package
-        run: dotnet nuget push "./nupkgs/*.nupkg" --source "github" --api-key ${{ secrets.NUGET_TOKEN }}
+        run: dotnet nuget push "./nupkgs/*.nupkg" --source "github" --api-key ${{ secrets.NUGET_TOKEN }} --skip-duplicate
