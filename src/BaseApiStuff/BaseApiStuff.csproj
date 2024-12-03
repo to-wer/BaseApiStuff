@@ -4,7 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>disable</Nullable>
-        <Version>0.2.2</Version>
+        <Version>0.2.3</Version>
         <Authors>Torsten Werner</Authors>
         <Description>This package provides essential components for building robust and scalable REST APIs, including JWT authentication, pagination, and a generic repository pattern. It simplifies common tasks, improves code reusability, and accelerates API development by offering ready-to-use solutions.</Description>
         <PackageTags>rest;api;jwt;authentication;pagination;repository</PackageTags>
