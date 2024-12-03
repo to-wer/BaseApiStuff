@@ -10,10 +10,10 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace BaseApiStuff.Services;
 
-public class BaseAuthenticationService(
-    ILogger<BaseAuthenticationService> logger,
+public class BaseAuthService(
+    ILogger<BaseAuthService> logger,
     UserManager<IdentityUser> userManager,
-    IConfiguration configuration) : IAuthenticationService
+    IConfiguration configuration) : IAuthService
 {
     public async Task<IdentityResult> RegisterUserAsync(RegisterUserDto userDto,
         CancellationToken cancellationToken = default)
